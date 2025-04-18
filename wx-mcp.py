@@ -1,7 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 from wxauto import WeChat
 
-mcp = FastMCP("wxauto_mcp")
+mcp = FastMCP("wx-mcp")
 wx = WeChat()
 
 
@@ -61,16 +61,17 @@ def auto_friend_accept_and_message_reply():
                 friend.Accept(remark=friend.name)
                 ac_friend.append(friend)
         for friend in ac_friend:
-            send_message("This is our city", friend.name)
+            send_message("BBB", friend.name)
+            
         if wx.CheckNewMessage():
             new_msgs = wx.GetNextNewMessage()
             print(new_msgs)
             for key, value in new_msgs.items():
                 if key != "Self":
                     for new_msg in value:
-                        if 'BBB' in new_msg[1]:
+                        if 'CCC' in new_msg[1]:
                             print(key)
-                            wx.SendMsg('CCC', key, clear="True")
+                            wx.SendMsg('DDD', key, clear="True")
         time.sleep(5) # 每隔 5 秒检查一次新消息
 
 
