@@ -1,5 +1,5 @@
 # wx-mcp
-在https://github.com/barantt/wxauto-mcp的基础上添加了自动回复用户信息和自动通过好友申请的功能，可以根据自身需求修改回复和通过好友规则
+在https://github.com/barantt/wxauto-mcp  的基础上添加了自动回复用户信息和自动通过好友申请的功能，可以根据自身需求修改回复和通过好友规则
 - **auto_friend_accept_and_message_reply**: 自动回复用户信息和自动通过好友申请
 
 ## 使用方法
