@@ -1,7 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 from wxauto import WeChat
 
-mcp = FastMCP("wx-mcp")
+mcp = FastMCP("wxauto_mcp")
 wx = WeChat()
 
 
@@ -36,23 +36,8 @@ def get_all_messages(who: str, load_more: bool = False):
 
 import time
 
-
-@mcp.tool(name="auto_reply", description="auto reply customers")
-def auto_reply_new():
-    while True:
-        if wx.CheckNewMessage():
-            new_msgs = wx.GetNextNewMessage()
-            print(new_msgs)
-            for key, value in new_msgs.items():
-                if key != "Self":
-                    for new_msg in value:
-                        if '知识星球' in new_msg[1]:
-                            print(key)
-                            wx.SendMsg('请查看发货信息', key, clear="True")
-        time.sleep(5) # 每隔 5 秒检查一次新消息
-
-@mcp.tool(name="auto_friend_accept_and_message_reply", description="auto accept friend invitation and reply message")
-def auto_friend_accept_and_message_reply():
+@mcp.tool(name="auto_friend_accept", description="auto accept friend invitation")
+def auto_friend_accept():
     while True:
         friend_list = wx.GetNewFriends()
         ac_friend = []
@@ -62,17 +47,17 @@ def auto_friend_accept_and_message_reply():
                 ac_friend.append(friend)
         for friend in ac_friend:
             send_message("BBB", friend.name)
-            
         if wx.CheckNewMessage():
             new_msgs = wx.GetNextNewMessage()
-            print(new_msgs)
             for key, value in new_msgs.items():
                 if key != "Self":
                     for new_msg in value:
                         if 'CCC' in new_msg[1]:
-                            print(key)
                             wx.SendMsg('DDD', key, clear="True")
         time.sleep(5) # 每隔 5 秒检查一次新消息
+
+
+
 
 
 if __name__ == "__main__":
