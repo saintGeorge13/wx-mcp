@@ -1,7 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 from wxauto import WeChat
 
-mcp = FastMCP("wxauto_mcp")
+mcp = FastMCP("wx-mcp")
 wx = WeChat()
 
 
