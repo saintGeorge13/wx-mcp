@@ -39,25 +39,27 @@ import time
 @mcp.tool(name="auto_friend_accept", description="auto accept friend invitation")
 def auto_friend_accept():
     while True:
-        friend_list = wx.GetNewFriends()
-        ac_friend = []
-        for friend in friend_list:
-            if "AAA" in friend.msg:
-                friend.Accept(remark=friend.name)
-                ac_friend.append(friend)
-        for friend in ac_friend:
-            send_message("BBB", friend.name)
-        if wx.CheckNewMessage():
-            new_msgs = wx.GetNextNewMessage()
-            for key, value in new_msgs.items():
-                if key != "Self":
-                    for new_msg in value:
-                        if 'CCC' in new_msg[1]:
-                            wx.SendMsg('DDD', key, clear="True")
+        try:
+            friend_list = wx.GetNewFriends()
+            print(friend_list)
+            ac_friend = []
+            for friend in friend_list:
+                if "AAA" in friend.msg:
+                    friend.Accept(remark=friend.name)
+                    ac_friend.append(friend)
+            for friend in ac_friend:
+                send_message("BBB", friend.name)
+            
+            if wx.CheckNewMessage():
+                new_msgs = wx.GetNextNewMessage()
+                for key, value in new_msgs.items():
+                    if key != "Self":
+                        for new_msg in value:
+                            if 'CCC' in new_msg[1]:
+                                wx.SendMsg('DDD', key, clear="True")
+        except:
+            pass
         time.sleep(5) # 每隔 5 秒检查一次新消息
-
-
-
 
 
 if __name__ == "__main__":
